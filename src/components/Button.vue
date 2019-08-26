@@ -3,6 +3,8 @@
     class="btn"
     :disabled="disabled"
     :style="styles"
+    :type="buttonType"
+    tabindex="0"
     :class="[type, size, shape, { invert, small }]"
     @click="$emit('click', $event)">
     <slot>Submit</slot>
@@ -45,6 +47,10 @@ export default {
     loading: {
       type: Boolean,
       default: false,
+    },
+    buttonType: {
+      default: 'button',
+      type: String,
     },
     type: {
       default: 'primary',
@@ -96,6 +102,9 @@ export default {
     font-weight: normal;
   }
   &.primary {
+    &:focus {
+      outline: $primary auto 2px;
+    }
     &:active {
       background: $primary-dark;
     }
@@ -110,6 +119,9 @@ export default {
     }
   }
   &.secondary {
+    &:focus {
+      outline: $secondary auto;
+    }
     color: $dark-text-color;
     background: $secondary;
     &:active {
@@ -128,6 +140,9 @@ export default {
     }
   }
   &.destructive {
+    &:focus {
+      outline: $destructive auto 2px;
+    }
     background: $destructive;
     &:active {
       background: $destructive-dark;
