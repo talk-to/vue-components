@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <Select :options="listOptions" />
+    <Demo />
   </div>
 </template>
 
 <script>
-import { Select } from './index';
+import Demo from './Demo.vue';
 
 export default {
   name: 'app',
   components: {
-    Select,
+    Demo,
   },
   data() {
     return {
