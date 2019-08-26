@@ -1,16 +1,43 @@
 {
-  "name": "lib",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@flockos/vue-components",
+  "author": "Divyam Rastogi",
+  "version": "0.1.73",
+  "license": "ISC",
+  "keywords": [
+    "vue",
+    "components"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "vue-cli-service build --target lib --name flock ./src/index.js",
+    "lint": "vue-cli-service lint --fix"
   },
+  "description": "## How to use: 1. Just use `npm install --save @flockos/vue-components` 2. Use the components in your file directly.",
   "dependencies": {
     "core-js": "^2.6.5",
     "vue": "^2.6.10"
   },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ],
+  "main": "./dist/flock.common.js",
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
@@ -21,6 +48,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
+    "vue-svg-loader": "^0.12.0",
     "vue-template-compiler": "^2.6.10"
   }
 }

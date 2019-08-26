@@ -1,0 +1,142 @@
+$primary: #0bbe51;
+$primary-dark: #008e3e;
+$secondary: #dedede;
+$secondary-dark: #697178;
+$destructive: #ff615b;
+$destructive-dark: #d74e49;
+
+$break-small: 480px;
+$break-large: 1024px;
+
+$text-color: #333333;
+$text-secondary: #4a4a4a;
+$dark-text-color: #454545;
+$light-text-color: #888888;
+$background-grey: #f2f2f2;
+
+// font sizes
+$normal: 1em;
+$small: 0.875em;
+$smaller: 0.75em;
+$large: 1.125em;
+$larger: 1.25em;
+
+$border-color: #b2b2b2;
+$border-grey-light: #eeeeee;
+$gray: #697178;
+
+$bg-grey: #ebebeb;
+$text-color-grey: #454545;
+$button-border-color: #697178;
+$input-border-color: #dddddd;
+$error-color: #ff615b;
+
+@mixin respond-to($media) {
+  @if $media==mobile {
+    @media only screen and (max-width: $break-small) {
+      @content;
+    }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) {
+      @content;
+    }
+  }
+  @else if $media==wide-screens {
+    @media only screen and (min-width: $break-small + 1) {
+      @content;
+    }
+  }
+}
+
+@mixin center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin vertical-center() {
+  display: flex;
+  align-items: center;
+}
+
+@mixin text-color() {
+  color: $text-color;
+}
+
+@mixin light-grey() {
+  @include text-color();
+  opacity: 0.6;
+}
+
+@mixin border($direction: bottom, $borderWidth: 1px, $border-color: #f3f3f3) {
+  border-#{$direction}: solid $borderWidth $border-color;
+}
+
+@mixin absolute-right() {
+  position: absolute;
+  right: 0;
+}
+
+@mixin absolute-fill() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@mixin pseudo-selector($size: 4px) {
+  content: '';
+  width: $size;
+  height: $size;
+  transform: rotateZ(45deg);
+}
+
+@mixin caret($size: 4px, $center: false, $invert: false) {
+  @include pseudo-selector($size);
+  @include absolute-right();
+  @if ($center == true) { top: 50%; transform: translateY(-50%) rotateZ(45deg); }
+  @if ($invert == true) { transform: translateY(-50%) rotateZ(225deg); }
+  border-right: solid 2px $caret-color;
+  border-bottom: solid 2px $caret-color;
+}
+
+@mixin background($url, $size: cover) {
+  background-image: url($url);
+  background-size: $size;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@mixin borderRadius($radius: 4px) {
+  border-radius: $radius;
+}
+
+@mixin round-border() {
+  border-radius: 50%;
+}
+
+@mixin ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@mixin bg-cover($backgroundImage: '', $size: contain) {
+  background-image: $backgroundImage;
+  background-repeat: no-repeat;
+  background-size: $size;
+}
+
+@mixin boxShadow() {
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+.dib {
+  display: inline-block;
+}
+.semi-bold {
+  font-weight: 500;
+}
